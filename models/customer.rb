@@ -37,7 +37,7 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
-  def update
+  def update()
     sql = "UPDATE customers
     SET (name, funds)
     = ($1, $2)
@@ -46,7 +46,7 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
-  def read
+  def read()
     sql = "SELECT * FROM customers WHERE id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values)

@@ -38,4 +38,20 @@ class Film
     SqlRunner.run(sql, values)
   end
 
+  def update()
+    sql = "UPDATE films SET
+    (title, price)
+    = ($1, $2)
+    WHERE id = $3"
+    values = [@title, @price, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def read()
+    sql = "SELECT * FROM films WHERE id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    film = Film.new(result)[0]
+  end
+
 end

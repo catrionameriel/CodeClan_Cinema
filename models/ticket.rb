@@ -31,10 +31,17 @@ class Ticket
     SqlRunner.run(sql)
   end
 
-  def delete
+  def delete()
     sql = "DELETE FROM tickets WHERE id = $1"
     values = [@id]
     SqlRunner.run(sql, values)
+  end
+
+  def read()
+    sql = "SELECT * FROM tickets WHERE id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    ticket = Ticket.new(result)[0]
   end
 
 end
