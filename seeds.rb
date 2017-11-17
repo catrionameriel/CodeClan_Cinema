@@ -4,7 +4,7 @@ require_relative('models/customer')
 require_relative('models/film')
 # require_relative('models/screening')
 
-# Ticket.delete_all()
+Ticket.delete_all()
 Customer.delete_all()
 Film.delete_all()
 
@@ -25,6 +25,9 @@ film3 = Film.new({'title' => '22 Jump Street', 'price' => 11.00 })
 film3.save
 film4 = Film.new({'title' => 'Sausage Party', 'price' => 12.00})
 film4.save
+
+ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
+ticket1.save
 
 # Screening.most_popular should return screening2
 binding.pry
