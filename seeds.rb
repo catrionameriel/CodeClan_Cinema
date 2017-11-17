@@ -17,6 +17,8 @@ customer3.save()
 customer4 = Customer.new({'name' => 'Zsolt', 'funds' => 50.00})
 customer4.save()
 
+customer4.delete()
+
 film1 = Film.new({'title' => 'Memento', 'price' => 10.00 })
 film1.save
 film2 = Film.new({'title' => 'Inception', 'price' => 9.00 })
@@ -25,6 +27,8 @@ film3 = Film.new({'title' => '22 Jump Street', 'price' => 11.00 })
 film3.save
 film4 = Film.new({'title' => 'Sausage Party', 'price' => 12.00})
 film4.save
+
+film4.delete
 
 ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
 ticket1.save
