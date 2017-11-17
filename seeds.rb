@@ -29,6 +29,8 @@ film4 = Film.new({'title' => 'Sausage Party', 'price' => 12.00})
 film4.save
 
 film4.delete
+customer3.name = 'Sian'
+customer3.update
 
 ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
 ticket1.save
