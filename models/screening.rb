@@ -31,6 +31,12 @@ class Screening
     SqlRunner.run(sql)
   end
 
+  def self.all
+    sql = "SELECT * FROM screenings"
+    result = SqlRunner.run(sql)
+    return result.map { |screening| Screening.new(screening)}
+  end
+
   def update
     sql = "UPDATE screenings SET(
       start_time,
@@ -40,6 +46,11 @@ class Screening
       WHERE id = $3"
       values = [@start_time, @empty_seats, @id]
       SqlRunner.run(sql, values)
+  end
+
+  def most_popular
+    
+
   end
 
 
