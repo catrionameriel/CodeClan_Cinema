@@ -81,5 +81,12 @@ class Customer
   # How could I split this into two methods?
   # Should this be in tickets?
 
+  def buy_tickets()
+    booked_films = self.films
+    film_prices = booked_films.map{|film| film.price}
+    film_prices.each {|price| @funds -= price}
+    return @funds
+  end
+
 
 end
