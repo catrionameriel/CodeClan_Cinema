@@ -85,6 +85,11 @@ class Customer
     booked_films = self.films
     film_prices = booked_films.map{ |film| film.price }
     film_prices.each { |price| @funds -= price }
+    sql = "UPDATE customers SET (name, funds)
+    = ($1, $2)
+    WHERE id = $3"
+    values = [@name, @funds, @id]
+    SqlRunner.run(sql, values)
     return @funds
   end
 
