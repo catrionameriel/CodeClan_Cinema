@@ -48,14 +48,28 @@ class Screening
       SqlRunner.run(sql, values)
   end
 
-  def self.most_popular()
-    sql = "SELECT * FROM screenings ORDER BY empty_seats ASC"
-    result = SqlRunner.run(sql)
-    ordered_screenings = result.map { |screening| Screening.new(screening) }
-    return ordered_screenings[0]
+  def film
+    sql = "SELECT * FROM films WHERE id = $1"
+    values = [@film_id]
+    film = SqlRunner.run(sql,values)[0]
+    return film
   end
 
+  # def self.most_popular()
+  #   sql = "SELECT * FROM screenings ORDER BY empty_seats ASC"
+  #   result = SqlRunner.run(sql)
+  #   ordered_screenings = result.map { |screening| Screening.new(screening) }
+  #   return ordered_screenings[0]
+  # end
+  # <----- Still like this method!
 
+  def customer_buys_ticket
+    @empty_seats -= 1
+    sql = "UPDATE screenings
+    SET empty_seats = $1 WHERE id = $2"
+    values = [@empty_seats, @id]
+    SqlRunner.run(sql, values)
+  end
 
 
 

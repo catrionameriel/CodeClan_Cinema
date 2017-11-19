@@ -32,16 +32,16 @@ film4.save
 
 customer3.name = 'Sian'
 customer3.update
+#
+# film3.price = 9
+# film3.update
 
-film3.price = 9
-film3.update
-
-ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
-ticket1.save
-ticket2 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id})
-ticket2.save
-ticket3 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id})
-ticket3.save
+# ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
+# ticket1.save
+# ticket2 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film1.id})
+# ticket2.save
+# ticket3 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id})
+# ticket3.save
 
 screening1 = Screening.new({'film_id' => film1.id, 'start_time' => '2017-01-08 20:00:00', 'empty_seats' => 20})
 screening1.save
@@ -53,6 +53,17 @@ screening4 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-11 1
 screening4.save
 screening5 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-12 21:00:00', 'empty_seats' => 10})
 screening5.save
+
+customer1.buy_ticket(screening2)
+customer2.buy_ticket(screening2)
+customer3.buy_ticket(screening2)
+customer4.buy_ticket(screening2)
+
+customer1.buy_ticket(screening3)
+
+customer1.buy_ticket(screening4)
+customer2.buy_ticket(screening4)
+customer3.buy_ticket(screening5)
 
 
 

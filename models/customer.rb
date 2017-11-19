@@ -81,16 +81,33 @@ class Customer
   # How could I split this into two methods?
   # Should this be in tickets?
 
-  def buy_tickets()
-    booked_films = self.films
-    film_prices = booked_films.map{ |film| film.price }
-    film_prices.each { |price| @funds -= price }
-    sql = "UPDATE customers SET (name, funds)
-    = ($1, $2)
-    WHERE id = $3"
-    values = [@name, @funds, @id]
+  # def pay_for_ticket
+  #   booked_films = self.films
+  #   film_prices = booked_films.map{ |film| film.price }
+  #   film_prices.each { |price| @funds -= price }
+  #   sql = "UPDATE customers SET (name, funds)
+  #   = ($1, $2)
+  #   WHERE id = $3"
+  #   values = [@name, @funds, @id]
+  #   SqlRunner.run(sql, values)
+  # end
+
+  def pay_for_ticket(screening)
+    sql = "SELECT films.price FROM films
+    WHERE id = $1"
+    values = [screening.film_id]
+    price = SqlRunner.run(sql, values)[0]['price'].to_i
+    @funds -= price
+
+    sql = "UPDATE customers SET funds = $1 WHERE id = $2"
+    values = [@funds, @id]
     SqlRunner.run(sql, values)
-    return @funds
+  end
+
+
+  def buy_ticket(screening)
+    self.pay_for_ticket(screening)
+    screening.customer_buys_ticket
   end
 
 
