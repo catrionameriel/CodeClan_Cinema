@@ -37,11 +37,31 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
-  def read()
+  def self.find_by_id(id)
     sql = "SELECT * FROM tickets WHERE id = $1"
-    values = [@id]
+    values = [id]
     result = SqlRunner.run(sql, values)
-    ticket = Ticket.new(result)[0]
+    ticket = Ticket.new(result[0])
+  end
+
+  def self.all
+    sql = "SELECT * FROM tickets"
+    result = SqlRunner.run(sql)
+    return result.map{ |ticket| Ticket.new(ticket)}
+  end
+
+  def film()
+    sql = "SELECT * FROM films WHERE id = $1"
+    values = [@film_id]
+    result = SqlRunner.run(sql, values)
+    return Film.new(result[0])
+  end
+
+  def customer()
+    sql = "SELECT * FROM customers WHERE id = $1"
+    values = [@customer_id]
+    result = SqlRunner.run(sql, values)
+    return Customer.new(result[0])
   end
 
 end
