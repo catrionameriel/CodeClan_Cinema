@@ -104,10 +104,23 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
+  def create_ticket(screening)
+    sql = "INSERT INTO tickets(
+      customer_id,
+      film_id
+      )
+    VALUES(
+      $1, $2
+      )"
+      values = [@id, screening.film_id]
+      SqlRunner.run(sql, values)
+  end
+
 
   def buy_ticket(screening)
     self.pay_for_ticket(screening)
     screening.customer_buys_ticket
+    self.create_ticket(screening)
   end
 
 

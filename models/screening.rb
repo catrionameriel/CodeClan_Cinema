@@ -71,6 +71,20 @@ class Screening
     SqlRunner.run(sql, values)
   end
 
+  # def self.most_popular
+  #   sql = "SELECT * from tickets ORDER BY $1 ASC"
+  #   values = [@film_id]
+  #   result = SqlRunner.run(sql, values)
+  #   tickets_bought = result.map {|ticket| Ticket.new(ticket)}
+  # end
+
+  def self.most_popular
+    sql = "SELECT film_id, COUNT(*) FROM tickets GROUP BY film_id ORDER BY COUNT DESC"
+    number_of_tickets_per_screening = SqlRunner.run(sql)
+    return number_of_tickets_per_screening[0]
+  end
+  # Comes back as hash - how to not have hash?
+
 
 
 end
