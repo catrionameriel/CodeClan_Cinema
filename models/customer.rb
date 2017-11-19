@@ -75,7 +75,7 @@ class Customer
     sql = "SELECT * from tickets WHERE customer_id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values)
-    tickets = result.map{ |ticket| Ticket.new(ticket)}
+    tickets = result.map{ |ticket| Ticket.new(ticket) }
     return tickets.count
   end
   # How could I split this into two methods?
@@ -83,8 +83,8 @@ class Customer
 
   def buy_tickets()
     booked_films = self.films
-    film_prices = booked_films.map{|film| film.price}
-    film_prices.each {|price| @funds -= price}
+    film_prices = booked_films.map{ |film| film.price }
+    film_prices.each { |price| @funds -= price }
     return @funds
   end
 
