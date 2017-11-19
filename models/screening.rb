@@ -31,13 +31,13 @@ class Screening
     SqlRunner.run(sql)
   end
 
-  def self.all
+  def self.all()
     sql = "SELECT * FROM screenings"
     result = SqlRunner.run(sql)
-    return result.map { |screening| Screening.new(screening)}
+    return result.map { |screening| Screening.new(screening) }
   end
 
-  def update
+  def update()
     sql = "UPDATE screenings SET(
       start_time,
       empty_seats
@@ -48,9 +48,11 @@ class Screening
       SqlRunner.run(sql, values)
   end
 
-  def most_popular
-    
-
+  def self.most_popular()
+    sql = "SELECT * FROM screenings ORDER BY empty_seats ASC"
+    result = SqlRunner.run(sql)
+    ordered_screenings = result.map { |screening| Screening.new(screening) }
+    return ordered_screenings[0]
   end
 
 
