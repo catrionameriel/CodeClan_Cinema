@@ -71,5 +71,15 @@ class Customer
     return films
   end
 
+  def how_many_tickets()
+    sql = "SELECT * from tickets WHERE customer_id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    tickets = result.map{ |ticket| Ticket.new(ticket)}
+    return tickets.count
+  end
+  # How could I split this into two methods?
+  # Should this be in tickets?
+
 
 end

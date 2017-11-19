@@ -37,6 +37,12 @@ film3.update
 
 ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film2.id})
 ticket1.save
+ticket2 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id})
+ticket2.save
+ticket3 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id})
+ticket3.save
+
+
 
 # Screening.most_popular should return screening2
 binding.pry

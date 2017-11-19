@@ -72,6 +72,12 @@ class Film
     return customers
   end
 
+  def how_many_customers
+    number = self.customers.count
+    return number
+  end
+  # is it ok to do a self here? I get the right answer but is it the right convention?
+
 
 
 end
